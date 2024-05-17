@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<script src="angular-datatables.min.js"></script>
+<script src="jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="datatables.bootstrap.css">
+
+
+	</head>
+	<body>
+
+<div ng-app="app" ng-controller="ControllerTab" class="container">
+<h2>Angular Datatables Server Side Processing with PHP and MySQL</h2>
+<br>
+<table class="table table-striped table-bordered" datatable="ng" dt-options="vm.dtOptions">
+<thead>
+<tr>
+<th>Sr</th>
+<th style="display: none;">Name</th>
+<th>Age</th>
+<th>Salary</th>
+<th>Action</th>
+<th>Age</th>
+<th>Salary</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="x in empList">
+<td>{{$index + 1}}</td>
+<td style="display: none;">
+						{{x.id}}																	
+						</td>	    
+						<td>{{x.no_reg_autorizado}}</td>
+						<td>{{x.rfc}}</td>
+						<td>{{x.nombre}} 
+						{{ap_paterno}} 
+						{{ap_materno}}
+						</td>
+						<td>{{x.telefono}}</td>
+						<td>{{x.correo}}</td>
+<td>
+<div class="btn-group">
+<button type="button" class="btn btn-default btn" ng-click="edit($index);"><i class="glyphicon glyphicon-pencil"></i></button>
+<button type="button" class="btn btn-default btn" ng-click="delete();"><i class="glyphicon glyphicon-trash"></i></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+	</body>
+</html>
+
+<script>
+
+(function(angular) {
+'use strict';
+angular.module('app', ['app.ControllerTab','datatables']);
+angular.module('app.ControllerTab', []).controller('ControllerTab', function($scope,$http) {
+
+$http.post('fetch.php', {
+		data: {access: 53}
+	}).success(function(response){					
+			
+		$scope.empList  = response ;		
+		
+		console.log(response);
+	}).error(function(){
+		console.log("Error al intentar cargar datos");		
+	});
+//$scope.empList = [{"id_usuario":"2265","nombre_usuario":"usig04","tipo_usuario":"2","activo":"t"},{"id_usuario":"2636","nombre_usuario":null,"tipo_usuario":"1","activo":"t"},{"id_usuario":"2607","nombre_usuario":null,"tipo_usuario":"1","activo":"t"},{"id_usuario":"2569","nombre_usuario":null,"tipo_usuario":"1","activo":"t"},{"id_usuario":"2527","nombre_usuario":"LZVAR","tipo_usuario":"2","activo":"t"}];;
+
+});
+})(angular);
+</script>

@@ -1,0 +1,250 @@
+<!doctype html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		
+	</title>
+</head>
+<body>
+		<table>
+	<thead>
+		<tr>
+			<th>Code</th>
+			<th>Company</th>
+			<th class="numeric">Price</th>
+			<th class="numeric">Change</th>
+			<th class="numeric">Change %</th>
+			<th class="numeric">Open</th>
+			<th class="numeric">High</th>
+			<th class="numeric">Low</th>
+			<th class="numeric">Volume</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>AAC</td>
+			<td>AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
+			<td class="numeric">$1.38</td>
+			<td class="numeric">-0.01</td>
+			<td class="numeric">-0.36%</td>
+			<td class="numeric">$1.39</td>
+			<td class="numeric">$1.39</td>
+			<td class="numeric">$1.38</td>
+			<td class="numeric">9,395</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+      var idI = $("#idInmu").val(); 
+    //Total de inmuebles a revisar
+    $.post("../../acceso",{acceess:43,idI:idI},
+    	function(n){
+    	 console.log('inmuebles');
+         $("#cc").val(n); 
+         //consultar informacion de inmuebles en vista revisor
+          var clavC = $("#cc").val();
+		  var fol = $("#idInmu").val();   
+		   $.post("../../acceso",{acceess:44,clavC:clavC, fol:fol},
+    	function(z){       
+    		//console.log(z); 
+        var conta=0;
+            $(z).each(function(key,valuee){
+            	//Aviso
+      var fol2 = $("#idCompl").val(); 
+      var inicio = "AD/";
+      var inicio2 = "DIP/";
+      var anio= valuee.aniodictamen;
+      var folioCompleto = inicio+fol2+"/"+anio;
+			$("#folioI").val(folioCompleto); 
+			$("#anioD").val(valuee.aniodictamen); 
+			
+			$("#rfcC").val(valuee.rfc); 
+			$("#clave").val(valuee.cve_catastral); 
+			$("#valor").val(valuee.valor_catastral); 
+			$("#calle").val(valuee.calle); 
+			$("#noE").val(valuee.no_exterior); 
+			$("#noI").val(valuee.no_interior); 
+			$("#colonia").val(valuee.colonia);
+			$("#municipio").val(valuee.nommpio);
+			$("#cp").val(valuee.codigo_p);
+			$("#referencia").val(valuee.referencia1);
+      
+			//Dictamen
+      var folioCompleto2 = inicio2+fol2+"/"+anio;
+      $("#noFolio").val(folioCompleto2);
+			var dictaminadorCom= valuee.dictminador+" "+valuee.apdictaminador+" "+valuee.amdictaminador; 
+			$("#dictaminador").val(dictaminadorCom); 
+			$("#rfcD").val(valuee.rfcdictaminador);
+			$("#noReg").val(valuee.noregistro);
+			$("#tipoD").val(valuee.tipodictamen);   
+			$("#estatus").val(valuee.etapa);
+
+			 //Archivos 
+			console.log('archivos'); 
+			  
+			var ruta="http://localhost/dictamun/files/documentos/"; 
+			if (valuee.orden==10) {
+            		$("#dictaval").val(valuee.nombredoc); 
+            		$("#comenDictaval").val(valuee.comentario);
+            		$("#descargaDictaval").append('<a id="descargaDictaval" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+            	}else if (valuee.orden==11) {
+            		$("#construccion").val(valuee.nombredoc);
+            		$("#comenConstru").val(valuee.comentario);
+            		$("#descargaConstruc").append('<a id="descargaConstruc" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+            	}else if (valuee.orden==12) {
+                conta = conta + 1;
+                $("#tipologiass").append('<tr><th style="display:none;">'+valuee.id+'</th><th>T-'+conta+'</th><th>'+valuee.nombredoc+'</th><th>'+valuee.comentario+'</th><th><a id="descargaConstruc" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a></th><th><textarea style="width: 300px; height: 50px;" id="comentarioT'+conta+'"></textarea></th></tr>');
+              }
+              //Total de Tipologias
+              $("#totalTipologias").val(conta);
+
+
+
+			if (valuee.tipod == 1) {
+        var nom=valuee.nombredenominacion;
+        var apa=valuee.apaterno;
+        var ama=valuee.amaterno;
+        var nombreCamp=nom+" "+apa+" "+ama;
+        $("#contri").val(nombreCamp); 
+        $("#propietario").val(nombreCamp);
+       // nombredenominacion,a.apaterno,a.amaterno
+        document.getElementById('acta').style.display='none';
+				//persona fisica
+				if (valuee.orden == 99) {
+					
+					$("#tituloPropiedad").val(valuee.nombredoc);
+            		$("#comenPropiedad").val(valuee.comentario);
+            		$("#descargaTitulo").append('<a id="descargaTitulo" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+
+				}else if (valuee.orden == 95) {
+					$("#croquis").val(valuee.nombredoc);
+            		$("#comenCroquis").val(valuee.comentario);
+            		$("#descargaCroquis").append('<a id="descargaCroquis" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+				}else if (valuee.orden == 98) {
+					$("#boletaPredial").val(valuee.nombredoc);
+            		$("#comentPredial").val(valuee.comentario);
+            		$("#descargarBoletaP").append('<a id="descargarBoletaP" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+				}else if (valuee.orden == 96) {
+					$("#planos").val(valuee.nombredoc);
+            		$("#comentplanos").val(valuee.comentario);
+            		$("#descargarPlanos").append('<a id="descargarPlanos" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+				}else if (valuee.orden == 94) {
+					$("#otros").val(valuee.nombredoc);
+            		$("#comentariOtros").val(valuee.comentario);
+            		$("#descargaOtros").append('<a id="descargaOtros" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+				}
+
+
+			}else if (valuee.tipod == 2) {
+        $("#contri").val(valuee.nombredenominacion); 
+        $("#propietario").val(valuee.nombredenominacion);
+        //document.getElementById('acta').style.display='block'; 
+				//persona moral
+				if (valuee.orden == 89) {
+					
+					$("#tituloPropiedad").val(valuee.nombredoc);
+            		$("#comenPropiedad").val(valuee.comentario);
+            		$("#descargaTitulo").append('<a id="descargaTitulo" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+
+				}else if (valuee.orden == 85) {
+					$("#croquis").val(valuee.nombredoc);
+            		$("#comenCroquis").val(valuee.comentario);
+            		$("#descargaCroquis").append('<a id="descargaCroquis" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+				}else if (valuee.orden == 88) {
+					$("#boletaPredial").val(valuee.nombredoc);
+            		$("#comentPredial").val(valuee.comentario);
+            		$("#descargarBoletaP").append('<a id="descargarBoletaP" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+				}else if (valuee.orden == 86) {
+					$("#planos").val(valuee.nombredoc);
+            		$("#comentplanos").val(valuee.comentario);
+            		$("#descargarPlanos").append('<a id="descargarPlanos" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+				}else if (valuee.orden == 84) {
+					$("#otros").val(valuee.nombredoc);
+            		$("#comentariOtros").val(valuee.comentario);
+            		$("#descargaOtros").append('<a id="descargaOtros" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+				}else if (valuee.orden == 90) {
+				//	$("#acta").css('display','block');
+					$("#actaC").val(valuee.nombredoc);
+            		
+                $("#comentactaC").val(valuee.comentario);
+            		$("#descargarActaC").append('<a id="descargarActaC" href="'+ruta+fol2+"/"+clavC+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+				}
+			}
+			
+      //predio
+      $("#folioPresenta").val(folioCompleto2); 
+
+      var ca=valuee.calle; 
+      var nE=valuee.no_exterior; 
+      var nI=valuee.no_interior; 
+      var col=valuee.colonia;
+      var mun=valuee.nommpio;
+      var cp=valuee.codigo_p;
+      var ref=valuee.referencia1;
+      var ubi= ca+" No.EXTERIOR: "+nE+" No.INTERIOR: "+nI+" COL."+col+" ,"+mun+" ;"+cp;
+
+      $("#ubicacion2").val(ubi);
+      $("#claveCa2").val(valuee.cve_catastral); 
+           
+
+	/*$.post("../../acceso",{acceess:42,clavC:clavC, fol:fol},
+    	function(ar){  
+    	//console.log(z); 
+    	var ruta="http://localhost/dictamun/files/documentos/"; 
+    	 var fol2 = $("#idCompl").val();   
+    	console.log(ar);
+
+            $(ar).each(function(key,valuee){
+
+            	
+            	if (valuee.orden==10) {
+            		$("#dictaval").val(valuee.nombredoc); 
+            		$("#comenDictaval").val(valuee.comentario);
+            		$("#descargaDictaval").append('<a id="descargaDictaval" href="'+ruta+fol2+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+            	}else if (valuee.orden==11) {
+            		$("#construccion").val(valuee.nombredoc);
+            		$("#comenConstru").val(valuee.comentario);
+            		$("#descargaConstruc").append('<a id="descargaDictaval" href="'+ruta+fol2+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  
+            	}else if (valuee.orden==88) {
+            		$("#boletaPredial").val(valuee.nombredoc);
+            		$("#comentPredial").val(valuee.comentario);
+            		$("#descargarBoletaP").append('<a id="descargaDictaval" href="'+ruta+fol2+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  					
+            	}else if (valuee.orden==84) {
+            		$("#otros").val(valuee.nombredoc);
+            		$("#comentariOtros").val(valuee.comentario);
+            		$("#descargaOtros").append('<a id="descargaDictaval" href="'+ruta+fol2+"/"+valuee.nombredoc+'" download="'+valuee.nombredoc+'"><i class="fa fa-download fa-2x"></i></a>');
+  					
+            	} 
+		});	
+      });*/
+
+		});				
+      });
+		   
+      });

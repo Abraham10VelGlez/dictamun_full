@@ -1,0 +1,61 @@
+<?php
+$coxx = pg_connect("host=127.0.0.1 port=5432 dbname=dictamun user=postgres password=12345") or die('No se ha podido conectar: ' . pg_last_error());
+$c= $coxx;
+$query = "SELECT  idetallusu as numregx FROM usuario_v2 order by idetallusu;";
+$result2 = pg_query($query) or die('La consulta fallo: ' . pg_last_error());
+// Imprimiendo los resultados aarray
+$rs1 = pg_query( $c, $query );
+while( $obj1 = pg_fetch_object($rs1) ){
+    $data2[] = $obj1;
+    
+}
+// Liberando el conjunto de resultados
+pg_free_result($result2);
+// Cerrando la conexion
+//pg_close($c);
+$sg="";
+foreach ($data2 as $departamento) {
+    $sg.=$departamento->numregx.",";
+    
+}
+$sg.="1,1,1,1,1,1,0";
+//print_r($sg);
+echo"<br>";
+$array = array(
+    "n1" =>  "1",
+    "n2" => "2",
+    "n4" => "4",
+    "n3" => "3",
+    "n6" => "6",
+"n7" => "7"
+);
+
+print_r($array);
+ $testArray = array($sg);
+//print_r($testArray);
+// tomar el mayor numero
+echo"<br>";
+echo"<br>";
+$arrayRange = range(1,max($array));
+print_r($arrayRange);
+//diferenciar los que hagan falta
+echo"<br>";
+echo"<br>";
+$missingValues = array_diff($arrayRange,$array);
+print_r($missingValues);
+foreach ($missingValues as &$valor) {
+    $valora = $valor;
+}
+//numeros disponibles
+echo"<br>";
+echo"<br>";
+echo $nuevo_numero_de_registro_calculado = $valora;
+//print_r($missingValues);
+// SE AUTOMARIZA EL USUARIO Y CONTRASEÑA
+
+
+
+die();
+
+
+?>

@@ -1,0 +1,274 @@
+#-----------------XXX---------------MTRO. ING ABRAHAM  && ING ELIZABETH ---------------------------XXX-------------------#
+
+<IfModule mod_rewrite.c>
+AddDefaultCharset utf-8
+AddCharset utf-8 .css .js .xml .json
+RewriteEngine on
+
+#ESTA SON REDIRECCIONES NORMALES DE ARCHIVOS CAMBIANDO EL NOMBRE REAL A UN NOMBRE TEMPORAL#
+
+#RewriteRule ^Inicio2$ index2.php [L]
+RewriteRule ^Inicio$ index.php [L]
+RewriteRule ^Fin$ index_mantenimiento.php [L]
+RewriteRule ^Log$ loggin.php [L]
+#RewriteRule ^actualizarInfo/([a-zA-Z0-9_-_=_/]+)/([a-zA-Z0-9_-_=_/]+)$ actualizarInformacion.php [L,NC,QSA]
+#RewriteRule ^actualizarInfoDom/([a-zA-Z0-9_-_=_/]+)/([a-zA-Z0-9_-_=_/]+)$ actualizarInformacionDomicilio.php [L,NC,QSA]
+
+
+
+#CONTRIBUYENTE
+
+###############################################################################################################
+RewriteRule ^PadronDictaminadores$ _view/padronCont2.php [L,NC,QSA]
+
+
+RewriteRule ^Registro_C$ _view_contribuyente/newcontribuy.php [L,NC,QSA]
+RewriteRule ^AEDTMN/DatosContribuyente/$ _view_contribuyente/dictaminadorinicio.php [L,NC,QSA]
+RewriteRule ^AEDTMN/VerifC/([a-zA-Z0-9_-_=_/]+)$ _view_contribuyente/verificarDatContri.php?link=$1 [L,NC,QSA]
+RewriteRule ^AEDTMN/SeguimientoContribuyente/$ _view_contribuyente/seguimientoContri.php [L,NC,QSA]
+RewriteRule ^AEDTMN/SeguimientoContribuyente2/$ _view_contribuyente/seguimientoContri2.php [L,NC,QSA]
+RewriteRule ^AEDTMN/SeguimientoDictamenC/([a-zA-Z0-9_-_=_/]+)$ _view_contribuyente/seguimientoDictamenCon.php?link=$1 [L,NC,QSA]
+
+
+
+################################################################################################################
+
+
+
+
+
+
+
+#LOGIN
+#RewriteRule ^AEDTMN/PadronDictaminadores/([a-zA-Z0-9_-_=_/]+)$ _view/padronCont.php?link=$1 [L,NC,QSA]
+RewriteRule ^AEDTMN/Predios/([a-zA-Z0-9_-_=_/]+)$ _view/predioEvaluar.php?link=$1 [L,NC,QSA]
+RewriteRule ^AEDTMN/Archivos/([a-zA-Z0-9_-_=_/]+)$ _view/archivos.php?link=$1 [L,NC,QSA]
+
+
+
+
+
+
+
+#DICTAMINADOR
+#MENU DE OPCIONES
+RewriteRule ^AEDTMN/SeguimientoDictamen/([a-zA-Z0-9_-_=_/]+)$ _view_dictaminador/dictaminador.php?link=$1 [L,NC,QSA]
+RewriteRule ^AEDTMN/dictamenesPreautorizados/$ _view_dictaminador/preautorizados.php [L,NC,QSA]
+RewriteRule ^AEDTMN/SeguimientoDictamenNOGREEN/([a-zA-Z0-9_-_=_/]+)$ _view_dictaminador/dictaminadorhojasverdenovalidos.php?link=$1 [L,NC,QSA]
+RewriteRule ^AEDTMN/observadosPorMunicipio/([a-zA-Z0-9_-_=_/]+)$ _view_dictaminador/observadosMunicipio.php?link=$1 [L,NC,QSA]
+
+# DATOS GENERALES DE DICTAMEN PENDIENTES
+RewriteRule ^AEDTMN/DictameneGral/([a-zA-Z0-9_-_=_/]+)$ _view_dictaminador/dictamenesDi.php?lk=$2 [L,NC,QSA]
+# DATOS GENERALES DE DICTAMEN PENDIENTES Observados
+RewriteRule ^AEDTMN/DictameneGralC/([a-zA-Z0-9_-_=_/]+)$ _view_dictaminador/dictamenes_cancelados_especialista.php?lk=$2 [L,NC,QSA]
+
+# DATOS GENERALES DE DICTAMEN pendientes (Archivo en hojas verdes)
+RewriteRule ^AEDTMN/DictamenenPreAutorizado/([a-zA-Z0-9_-_=_/]+)$ _view_dictaminador/dictamenesPreautorizadosV.php?lk=$2 [L,NC,QSA]
+# DATOS GENERALES DE DICTAMEN  con observaciones realizadas por los municipios
+RewriteRule ^AEDTMN/ObservacionDeMunicipio/([a-zA-Z0-9_-_=_/]+)$ _view_dictaminador/dictamenesConObservacionMunicipio.php?lk=$2 [L,NC,QSA]
+# DATOS GENERALES DE DICTAMEN  con Hojas Verdes No Valido
+RewriteRule ^AEDTMN/DictamenenoGreen/([a-zA-Z0-9_-_=_/]+)$ _view_dictaminador/dictamenes_nohojasverder.php?lk=$2 [L,NC,QSA]
+
+
+
+RewriteRule ^AEDTMN/ListaDictamenes/([a-zA-Z0-9_-_=_/]+)$ _view/seguimientoD.php?link=$2 [L,NC,QSA]
+
+RewriteRule ^AEDTMN/DictamenesValidados/([a-zA-Z0-9_-_=_/]+)$ _view/dictamenesValidados.php?lk=$2 [L,NC,QSA]
+
+
+RewriteRule ^AEDTMN/MoterF$ files/motor_fileVal.php [L,NC,QSA]
+RewriteRule ^AEDTMN/MoterFC$ files/motor_fileVal2.php [L,NC,QSA]
+RewriteRule ^AEDTMN/MotorFilerF$ files/motor_file.php [L,NC,QSA]
+RewriteRule ^AEDTMN/MotorFilerM$ files/motor_file2.php [L,NC,QSA]
+RewriteRule ^AEDTMN/MotorFilerR$ files/motor_file3.php [L,NC,QSA]
+RewriteRule ^AEDTMN/MotorFilerED$ files/motor_file4.php [L,NC,QSA]
+RewriteRule ^AEDTMN/MotorFilerARCHEX$ files/motor_file5.php [L,NC,QSA]
+RewriteRule ^AEDTMN/MotorFilerARCHFEX$ files/motor_file6.php [L,NC,QSA]
+RewriteRule ^AEDTMN/avisoDictamen/([a-zA-Z0-9_-_=/]+)$ dompdf/repor.php?f=$1 [L,NC,QSA]
+RewriteRule ^AEDTMN/MotorFilerFac$ files/motor_file_fach.php [L,NC,QSA]
+
+RewriteRule ^AEDTMN/Motor_drop/$ files/motor_deletefile.php?f=$1 [L,NC,QSA]
+
+
+
+
+
+RewriteRule ^loading/load2$ files/upload_tipologia_renueva.php [L,NC,QSA]
+RewriteRule ^fil/elim/$ files/motor_deletefile_n.php [L,NC,QSA]
+
+RewriteRule ^cancelad/loadfile$ files/upload_files_cancel.php [L,NC,QSA]
+
+
+RewriteRule ^loading/load$ files/upload_loading.php [L,NC,QSA]
+RewriteRule ^loading/loadmm$ files/upload_loadingmoral.php [L,NC,QSA]
+
+RewriteRule ^loadingmr/loadml$ files/upload_loadingbaldiomoral.php [L,NC,QSA]
+RewriteRule ^loadingmr/loadmmml$ files/upload_loadingconstruidomoral.php [L,NC,QSA]
+
+
+RewriteRule ^loadingone/load2$ files/upload_tipologialoading.php [L,NC,QSA]
+RewriteRule ^fil/elimfilesone/$ files/motor_deletefile_filesone.php [L,NC,QSA]
+
+RewriteRule ^AEDTMN/MoterHV$ files/motor_filehverdes.php [L,NC,QSA]
+RewriteRule ^AEDTMN/MoterHV2$ files/motor_filehverdes2.php [L,NC,QSA]
+
+
+
+
+
+
+
+
+#REVISOR
+
+RewriteRule ^AEDTMN/SeguimientoRevisor/([a-zA-Z0-9_-_=_/]+)$ _view_revisor/revisor.php?link=$1 [L,NC,QSA]
+RewriteRule ^AEDTMN/SeguimientoRevisorPre/([a-zA-Z0-9_-_=_/]+)$ _view_revisor/revisorRechazadosAdmonPagos.php?link=$1 [L,NC,QSA]
+RewriteRule ^AEDTMN/observadosPorMunicipioRevisores/([a-zA-Z0-9_-_=_/]+)$ _view_revisor/observadosMunicipioR.php?link=$1 [L,NC,QSA]
+RewriteRule ^AEDTMN/SegDictamen/([a-zA-Z0-9_-_=_/]+)$ _view_revisor/seguimiento.php?link=$3 [L,NC,QSA]
+RewriteRule ^AEDTMN/SegDictamenpreautorizado/([a-zA-Z0-9_-_=/]+)$ _view_revisor/seguimientoPreautorizadoshverdes.php?link=$3 [L,NC,QSA]
+RewriteRule ^AEDTMN/SeguimientoComentariosMun/([a-zA-Z0-9_-_=_/]+)$ _view_revisor/seguimientoComentarioMun.php?link=$3 [L,NC,QSA]
+
+
+
+
+
+RewriteRule ^AEDTMN/ListaSegRevisor/([a-zA-Z0-9_-_=_/]+)$ _view/dictamenes.php?link=$2 [L,NC,QSA]
+
+
+
+
+
+
+
+
+#ADMIN4
+RewriteRule ^AEDTMN/BusquedaAdmin/$ _view_adminpago/dicEstatusPagos.php [L,NC,QSA]
+RewriteRule ^AEDTMN/Busqueda/$ _view_adminpago/busqueda.php [L,NC,QSA]
+RewriteRule ^AEDTMN/SeguimientoAdmin/([a-zA-Z0-9_-_=_/_+]+)$ _view_adminpago/seguimientoAdmin.php?link=$2 [L,NC,QSA]
+RewriteRule ^AEDTMN/Control/$ _view_adminpago/adminCPago.php [L,NC,QSA]
+RewriteRule ^AEDTMN/PPago/$ _view_adminpago/adminProcesp.php [L,NC,QSA]
+RewriteRule ^AEDTMN/validaPag/$ _view_adminpago/adminValidarPago.php [L,NC,QSA]
+
+RewriteRule ^AEDTMN/ofiice/([a-zA-Z0-9_-_=_/_+]+)$ oficiOrdenPagos.php?num=$2 [L,NC,QSA]
+
+RewriteRule ^AEDTMN/DicPendientesAdmonP/([a-zA-Z0-9_-_=_/_+]+)$ _view_adminpago/dicPendientesAdmonPagos.php?link=$1 [L,NC,QSA]
+RewriteRule ^AEDTMN/DicRechazados/([a-zA-Z0-9_-_=_/_+]+)$ _view_adminpago/dicRechazadosAdmon.php?link=$1 [L,NC,QSA]
+
+RewriteRule ^AIGECEMDTMN/Dictamen_reverch/$ _view_adminpago/dictamenesrrv.php?link=$1 [L,NC,QSA]
+RewriteRule ^AIGECEMDTMN/Dictamen_deleted/$ _view_adminpago/dictameneselimm.php?link=$1 [L,NC,QSA]
+
+RewriteRule ^AEDTMN/adminigecemR/([a-zA-Z0-9_-_=_/]+)$ _view_adminpago/seguimiento4.php?link=$a [L,NC,QSA]
+
+RewriteRule ^AEDTMN/adminigecemR/([a-zA-Z0-9_-_=_/]+)$ _view_adminpago/seguimiento4.php?link=$a [L,NC,QSA]
+
+RewriteRule ^AEDTMN/adminigecemdelete/([a-zA-Z0-9_-_=_/]+)$ _view_adminpago/seguimiento5.php?link=$a [L,NC,QSA]
+
+
+RewriteRule ^AIGECEMDTMN/dictamens10/$ _view_adminpago/dictamenes_valid.php?link=$1 [L,NC,QSA]
+
+
+
+
+
+#ADMIN_SUPER_USER
+RewriteRule ^AEDTMN/AdminGris/$ _view_admin/adm.php [L,NC,QSA]
+RewriteRule ^AEDTMN/Admin2Gris/$ _view_admin/admdisabled.php [L,NC,QSA]
+RewriteRule ^AEDTMN/Admin3Gris/$ _view_admin/admenable.php [L,NC,QSA]
+RewriteRule ^AEDTMN/Admin4Gris/$ _view_admin/admnewu.php [L,NC,QSA]
+RewriteRule ^AEDTMN/Admin5Gris/$ _view_admin/admversion.php [L,NC,QSA]
+RewriteRule ^AEDTMN/AdminSeguimiento/([a-zA-Z0-9_-_=_/]+)$ _view_admin/seguimiento2.php?link=$a [L,NC,QSA]
+RewriteRule ^AEDTMN/AdminSeguimientoJ/([a-zA-Z0-9_-_=_/]+)$ _view_admin/seguimiento3.php?link=$a [L,NC,QSA]
+RewriteRule ^AEDTMN/Admin6Gris/$ _view_admin/admbusquedaf.php [L,NC,QSA]
+RewriteRule ^AEDTMN/AdminPendientes/$ _view_admin/dicPendientes.php [L,NC,QSA]
+RewriteRule ^AEDTMN/AdminReasig/$ _view_admin/dicR.php [L,NC,QSA]
+RewriteRule ^AEDTMN/AdminAutorizados/([a-zA-Z0-9_-_=_/]+)$ _view_admin/dicAutorizados.php?link=$a [L,NC,QSA]
+RewriteRule ^AEDTMN/AdminReasigRev/$ _view_admin/dicReasignarRevisor.php [L,NC,QSA]
+RewriteRule ^AEDTMN/AdminEstatus/$ _view_admin/dicEstatus.php [L,NC,QSA]
+
+RewriteRule ^acceso14$ angularprocess/proceso12.php [L,NC,QSA]
+
+#MUNICIPIO
+RewriteRule ^AEDTMN/InicioM/$ _view/Muninicio.php [L,NC,QSA]
+RewriteRule ^AEDTMN/DictProcc/$ _view/admMun1.php [L,NC,QSA]
+RewriteRule ^AEDTMN/DictEmt/$ _view/admMun2.php [L,NC,QSA]
+RewriteRule ^AEDTMN/SeguimientoMunicipio/([a-zA-Z0-9_-_=_/]+)$ _view/segMunicipios.php?link=$a [L,NC,QSA]
+RewriteRule ^AEDTMN/SeguimientoMunicipioE/([a-zA-Z0-9_-_=_/]+)$ _view/segMunicipiosE.php?link=$a [L,NC,QSA]
+
+#DGREACUDACION
+RewriteRule ^AEDTDGR/InicioDGR/$ _view/DGRinicio.php [L,NC,QSA]
+RewriteRule ^AEDTDGR/Dictlibert/$ _view/admDGR1.php [L,NC,QSA]
+#RewriteRule ^AEDTDGR/Dictlibert/$ _view/admDGR1.php [L,NC,QSA]
+RewriteRule ^AEDTDGR/SeguimientoDirecciones/([a-zA-Z0-9_-_=_/]+)$ _view/segDirecciones.php?link=$a [L,NC,QSA]
+
+
+#DGFISCALIZACION
+RewriteRule ^AEDTDGF/InicioDGF/$ _view/DGFinicio.php [L,NC,QSA]
+RewriteRule ^AEDTDGF/DictGrls/$ _view/admDGF1.php [L,NC,QSA]
+#RewriteRule ^AEDTDGF/DictGrls/$ _view/admDGF1.php [L,NC,QSA]
+RewriteRule ^AEDTDGF/SeguimientoDireccionesF/([a-zA-Z0-9_-_=_/]+)$ _view/segDireccionesF.php?link=$a [L,NC,QSA]
+
+
+#ACCESOS PARA EL FUNCIONAMIENTO RAIZ
+RewriteRule ^acceso$ web/route.php [L,NC,QSA]
+RewriteRule ^acceso2$ web/routeangular.php [L,NC,QSA]
+RewriteRule ^acceso20$ web/routeab.php [L,NC,QSA]
+RewriteRule ^acceso3$ angularprocess/proceso1.php [L,NC,QSA]
+RewriteRule ^acceso4$ angularprocess/proceso2.php [L,NC,QSA]
+RewriteRule ^acceso5$ angularprocess/proceso3.php [L,NC,QSA]
+RewriteRule ^acceso6$ angularprocess/proceso4.php [L,NC,QSA]
+RewriteRule ^acceso7$ angularprocess/proceso5.php [L,NC,QSA]
+RewriteRule ^acceso8$ angularprocess/proceso6.php [L,NC,QSA]
+RewriteRule ^acceso9$ angularprocess/proceso7.php [L,NC,QSA]
+RewriteRule ^acceso10$ angularprocess/proceso8.php [L,NC,QSA]
+
+RewriteRule ^acceso11$ angularprocess/proceso9.php [L,NC,QSA]
+RewriteRule ^acceso12$ angularprocess/proceso10.php [L,NC,QSA]
+RewriteRule ^acceso13$ angularprocess/proceso11.php [L,NC,QSA]
+RewriteRule ^avisoDicta/([a-zA-Z0-9_-_=_/]+)$ rep.php?link=$a [L,NC,QSA]
+
+#acceso a subida de archivos
+#RewriteRule ^filess$ subida2.php [L,NC,QSA]
+#RewriteRule ^filessx/([a-zA-Z0-9_-_=_/]+)$ subida.php?f=$1 [L,NC,QSA]
+#RewriteRule ^load$ upload.php [L,NC,QSA]
+#RewriteRule ^load2$ upload_tipologia.php [L,NC,QSA]
+RewriteRule ^fil/elim/$ files/motor_deletefile_especial.php?f=$1 [L,NC,QSA]
+
+
+RewriteRule ^pdf/aviso/([a-zA-Z0-9_-_=_/]+)$ tcpdf/examples/example_001.php?var=$1 [L,NC,QSA]
+RewriteRule ^pdfx/certificationIGECEM/([a-zA-Z0-9_-_=_/]+)$ tcpdf/examples/example_001_avgcertificado.php?var=$1 [L,NC,QSA]
+
+RewriteRule ^pdfavg/avisovalidados/([a-zA-Z0-9_-_=_/]+)$ tcpdf/examples/example_001_validados.php?var=$1 [L,NC,QSA]
+#RewriteRule ^pdf/aviso/([a-zA-Z0-9_-_=_/]+)$ dompdf/pdf.php?var=$1 [L,NC,QSA]
+
+
+
+#RewriteRule ^redirect$ cargaadiscoe.php?var=$1 [L,NC,QSA]
+
+
+#RewriteRule ^lolo$ ejem.php?var=$1 [L,NC,QSA]
+
+
+
+#RECUPERACION DE CONTRASENIAS
+RewriteRule ^STUDIOAIGECEM/findupdatepass/$ _view/find_users.php [L,NC,QSA]
+
+
+#MANUALES DE USUARIOS
+RewriteRule ^AEDTMN/manualContribuyente/$ _view/viewcontribuyente.php [L,NC,QSA]
+RewriteRule ^AEDTMN/manualEspecialista/$ _view/viewdictaminador.php [L,NC,QSA]
+RewriteRule ^AEDTMN/manualRevisorigecem/$ _view/viewrevisor.php [L,NC,QSA]
+RewriteRule ^AEDTMN/manualAdminGeneral/$ _view/viewadministrador.php [L,NC,QSA]
+RewriteRule ^AEDTMN/manualAdministrador/$ _view/viewadminpagos.php [L,NC,QSA]
+
+RewriteRule ^manual$ _view/viewManual.php [L,NC,QSA]
+
+RewriteRule ^AEDTMN/manualmunicipios/$ _view/viewmun.php [L,NC,QSA]
+
+RewriteRule ^AEDTDGF/manualfis/$ _view/viewdgf.php [L,NC,QSA]
+RewriteRule ^AEDTDGR/manualrec/$ _view/viewdgr.php [L,NC,QSA]
+
+RewriteRule ^AEDTMN/actualizacionTarifas/$ _view/actTarifas.php [L,NC,QSA]
+
+ErrorDocument 404 /paginadeerror.html
+
+</IfModule>
